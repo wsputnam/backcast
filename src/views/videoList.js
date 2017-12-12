@@ -11,6 +11,7 @@ var VideoListView = Backbone.View.extend({
   
   initialize: function() {
     this.videos = new Videos(window.exampleVideoData);
+    this.render();
   },
   
   render: function() {
@@ -21,6 +22,7 @@ var VideoListView = Backbone.View.extend({
     // var videoArray = _.map(window.exampleVideoData, function(video) {
     //   return video.url;
     // });
+    console.log('empty', this);
     _.each(window.exampleVideoData, this.renderVideo, this);
     return this.$el;
   },
