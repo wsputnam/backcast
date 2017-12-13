@@ -11,6 +11,8 @@ var VideoListEntryView = Backbone.View.extend({
   
   initialize: function() {
     this.videos = new Videos(window.exampleVideoData);
+    this.videos = new Videos(this.videos.search('hackreactor'));
+    
   },
   
   render: function() {

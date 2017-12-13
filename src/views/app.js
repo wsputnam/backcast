@@ -4,6 +4,8 @@ var AppView = Backbone.View.extend({
 
   initialize: function() {
     this.videos = new Videos(window.exampleVideoData);
+    this.videos.search('hackreactor');
+    console.log('new movies', this.videos.search('hackreactor'));
     this.render();
   },
   
@@ -19,7 +21,7 @@ var AppView = Backbone.View.extend({
     
     new VideoPlayerView({
       el: this.$('#video-player'),
-      model: this.videos.at(0)
+      model: this.videos.at(0) // automatically selects the first video without invoking model.select
     }).render();
     
     new VideoListView({

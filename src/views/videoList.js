@@ -4,7 +4,7 @@ var VideoListView = Backbone.View.extend({
 
   el: '#video-list',
  
-  initialize: function() {
+  initialize: function(data) {
     this.videos = new Videos(window.exampleVideoData);
   },
  
