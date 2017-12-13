@@ -1,5 +1,4 @@
 var VideoListEntryView = Backbone.View.extend({
-  // url: 'src/data/exampleVideoData.js',
   template: _.template(`<div id ="video-entry" class="video-list-entry media"> 
     <div class="media-left">
       <img class="media-object" src=<%- image %> />
@@ -9,19 +8,27 @@ var VideoListEntryView = Backbone.View.extend({
       <div class="video-list-entry-detail"><%- detail %></div>
     </div>
   </div>`),
-  // template: _.template('<div class="movie"> \
-  //                         <div class="like"> \
-  //                           <button><img src="images/<%- like ? \'up\' : \'down\' %>.jpg"></button> \
-  //                         </div> \
-  //                         <span class="title"><%- title %></span> \
-  //                         <span class="year">(<%- year %>)</span> \
-  //                         <div class="rating">Fan rating: <%- rating %> of 10</div> \
-  //                       </div>'),
+  
+  initialize: function() {
+    this.videos = new Videos(window.exampleVideoData);
+  },
+  
   render: function() {
-    // this.$el.html(this.get(exampleVideoData));
     this.$el.html(this.template(this.model.attributes));
-    // console.log('list entry', this);
     return this.$el;
   },
+  
+  events: {
+    'click #video-entry': 'handleClick'
+  },
+  
+  handleClick: function() {
+    this.model.select();
+    new VideoPlayerView({
+      el: $('#video-player'),
+      model: this.model,
+      collection: this.model.collection
+    }).render();
+  }
 
 });
