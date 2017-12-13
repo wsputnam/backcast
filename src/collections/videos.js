@@ -19,10 +19,11 @@ var Videos = Backbone.Collection.extend({
       },
       success: function(data) {
         // get items back that match search criteria
-        // console.log('items: ', data.items);
-        // return data.items;\
+  
+        // this.set(data.items);
+        
         console.log(data.items);
-        return video.initialize(data.items);
+        return data.items;
       },
       error: function(data) {
         console.log('error: ' + data);
@@ -33,8 +34,20 @@ var Videos = Backbone.Collection.extend({
   
   parse: function(obj) {
     // puts data object into collection form
-    return obj.items;
+    if (_.isObject(obj.items)) {
+      return obj.items;
+    } else {
+      return obj;
+    }
   }
+  
+  // parse: function (response, xhr) {
+  //   if (_.isObject(response.items)) {
+  //     return response.items;
+  //   } else {
+  //     return response;
+  //   }
+
   
 });
 

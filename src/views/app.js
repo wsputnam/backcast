@@ -1,16 +1,17 @@
 var AppView = Backbone.View.extend({
 
   el: '#app',
+  
+  // collection: this.videos,
 
   initialize: function() {
     this.videos = new Videos(window.exampleVideoData);
     this.videos.search('hackreactor');
     console.log('new movies', this.videos.search('hackreactor'));
+    this.videos.on('all', this.render, this);
     this.render();
   },
   
-  collection: this.videos,
-
   render: function() {
     this.$el.html(this.template());
     
@@ -31,6 +32,7 @@ var AppView = Backbone.View.extend({
     
     return this.$el;
   },
+  
 
   template: templateURL('src/templates/app.html')
   

@@ -20,6 +20,7 @@ var SearchView = Backbone.View.extend({
     var toSearch = $('input').val();
     console.log('search val:', toSearch);
     this.collection.search(toSearch);
+
   },
 
   template: templateURL('src/templates/search.html')
